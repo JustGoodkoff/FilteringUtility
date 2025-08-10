@@ -1,6 +1,10 @@
 package ru.nsu.agudkov;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Params {
 
@@ -38,13 +42,36 @@ public class Params {
         return type;
     }
 
-    @Override
-    public String toString() {
-        return "outputPath='" + outputPath + '\'' +
-                ", filePrefix='" + filePrefix + '\'' +
-                ", rewriteFiles=" + appendFiles +
-                ", type=" + type +
-                ", files=" + files +
-                '}';
+    static class Builder {
+        private String outputPath;
+        private String filePrefix;
+        private Boolean appendFiles = false;
+        private StatisticType type;
+        private ArrayList<String> files = new ArrayList<>();
+
+        void setOutputPath(String outputPath) {
+            this.outputPath = outputPath;
+        }
+
+        void setFilePrefix(String filePrefix) {
+            this.filePrefix = filePrefix;
+        }
+
+
+        void setStatisticType(StatisticType type) {
+            this.type = type;
+        }
+
+        void setFiles(List<String> files) {
+            this.files = (ArrayList<String>) files;
+        }
+
+        Params build() {
+            return new Params(outputPath, filePrefix, appendFiles, type, files);
+        }
+
+        public void setAppendFiles() {
+            this.appendFiles = true;
+        }
     }
 }
