@@ -63,8 +63,8 @@ public class Params {
 
         void setOutputPath(String outputPath) {
             if (!Files.isDirectory(Paths.get(outputPath))) {
-                System.out.println("Ошибка: указанный путь не является директорией.\n" +
-                        "Вместо него будет использована текущая рабочая директория.");
+                System.out.println("Warning: The specified path is not a directory.\n" +
+                        "The current working directory will be used instead.\n");
             } else {
                 this.outputPath = outputPath;
             }
@@ -86,11 +86,11 @@ public class Params {
                 if (Files.isRegularFile(Path.of(file))) {
                     this.files.add(file);
                 } else {
-                    System.out.println("Объект " + file + " не является файлом, данные из него не будут взяты");
+                    System.out.println("The path \"" + file + "\" is not a regular file; data from it will be ignored.");
                 }
             }
             if (this.files.isEmpty()) {
-                throw new ParseException("Нет валидных входных файлов");
+                throw new ParseException("No valid input files were provided.\n");
             }
         }
 
