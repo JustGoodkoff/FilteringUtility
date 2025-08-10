@@ -1,5 +1,7 @@
 package ru.nsu.agudkov;
 
+import org.apache.commons.cli.ParseException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +81,16 @@ public class Params {
             }
         }
 
-        void setFiles(List<String> files) {
+        void setFiles(List<String> files) throws ParseException {
             for (String file : files) {
                 if (Files.isRegularFile(Path.of(file))) {
                     this.files.add(file);
                 } else {
                     System.out.println("Объект " + file + " не является файлом, данные из него не будут взяты");
                 }
+            }
+            if (this.files.isEmpty()) {
+                throw new ParseException("Нет валидных входных файлов");
             }
         }
 
