@@ -57,10 +57,15 @@ public class Params {
         private String filePrefix;
         private Boolean appendFiles = false;
         private StatisticType type;
-        private ArrayList<String> files = new ArrayList<>();
+        private final ArrayList<String> files = new ArrayList<>();
 
         void setOutputPath(String outputPath) {
-            this.outputPath = outputPath;
+            if (!Files.isDirectory(Paths.get(outputPath))) {
+                System.out.println("Ошибка: указанный путь не является директорией.\n" +
+                        "Вместо него будет использована текущая рабочая директория.");
+            } else {
+                this.outputPath = outputPath;
+            }
         }
 
         void setFilePrefix(String filePrefix) {
@@ -69,11 +74,19 @@ public class Params {
 
 
         void setStatisticType(StatisticType type) {
-            this.type = type;
+            if (this.type == null) {
+                this.type = type;
+            }
         }
 
         void setFiles(List<String> files) {
-            this.files = (ArrayList<String>) files;
+            for (String file : files) {
+                if (Files.isRegularFile(Path.of(file))) {
+                    this.files.add(file);
+                } else {
+                    System.out.println("Объект " + file + " не является файлом, данные из него не будут взяты");
+                }
+            }
         }
 
         Params build() {
