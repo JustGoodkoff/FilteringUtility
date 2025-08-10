@@ -42,6 +42,16 @@ public class Params {
         return type;
     }
 
+    @Override
+    public String toString() {
+        return "outputPath='" + outputPath + '\'' +
+                ", filePrefix='" + filePrefix + '\'' +
+                ", rewriteFiles=" + appendFiles +
+                ", type=" + type +
+                ", files=" + files +
+                '}';
+    }
+
     static class Builder {
         private String outputPath;
         private String filePrefix;
