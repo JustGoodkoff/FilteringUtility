@@ -13,7 +13,6 @@ public class Main {
         Params params = null;
         try {
             params = parser.parse(args);
-            System.out.println(params.toString());
         } catch (ParseException e) {
             System.err.println(e.getMessage());
             System.exit(EXIT_PARSE_ERROR);
