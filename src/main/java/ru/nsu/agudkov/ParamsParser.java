@@ -35,7 +35,7 @@ public class ParamsParser {
         builder.setFilePrefix(cmd.getOptionValue("p", ""));
 
         if (cmd.getArgs().length == 0) {
-            throw new ParseException("Ошибка: не указаны входные файлы");
+            throw new ParseException("Error: No input files specified. Please provide at least one input file");
         }
 
         builder.setFiles(cmd.getArgList());
