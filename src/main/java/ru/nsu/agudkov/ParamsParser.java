@@ -22,12 +22,12 @@ public class ParamsParser {
             builder.setAppendFiles();
         }
 
-        if (cmd.hasOption("s")) {
-            builder.setStatisticType(StatisticType.SHORT);
-        }
-
         if (cmd.hasOption("f")) {
             builder.setStatisticType(StatisticType.FULL);
+        }
+
+        if (cmd.hasOption("s")) {
+            builder.setStatisticType(StatisticType.SHORT);
         }
 
         builder.setOutputPath(cmd.getOptionValue("o", ""));

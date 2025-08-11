@@ -55,8 +55,8 @@ public class Params {
     }
 
     static class Builder {
-        private String outputPath;
-        private String filePrefix;
+        private String outputPath = "";
+        private String filePrefix = "";
         private Boolean appendFiles = false;
         private StatisticType type;
         private final ArrayList<String> files = new ArrayList<>();
