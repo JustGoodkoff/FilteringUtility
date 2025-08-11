@@ -13,12 +13,12 @@ public class StringStatistics extends BaseStatistics<String> {
 
     @Override
     public String getFullStatistics() {
-        return minLength + " " + maxLength;
+        return "String full statistics:\n" + "\tmin length: " + minLength + "\n\tmax length: " + maxLength;
     }
 
     @Override
     public String getShortStatistics() {
-        return String.valueOf(getCount());
+        return "String short statistics:\n" + "\tcount: " + getCount();
     }
 
 }

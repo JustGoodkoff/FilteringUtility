@@ -18,13 +18,12 @@ public class IntegerStatistics extends BaseStatistics<BigInteger> {
 
     @Override
     public String getFullStatistics() {
-        return "min " + min + " max " + max + " sum " + sum + " avg " + avg;
+        return "Integer full statistics:\n" + "\tmin: " + min + "\n\tmax: " + max + "\n\tavg: " + avg;
     }
 
     @Override
     public String getShortStatistics() {
-        return String.valueOf(getCount());
-
+        return "Integer short statistics:\n" + "\tcount: " + getCount();
     }
 
 }

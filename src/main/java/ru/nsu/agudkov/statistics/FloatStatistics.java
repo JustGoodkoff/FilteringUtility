@@ -20,12 +20,12 @@ public class FloatStatistics extends BaseStatistics<BigDecimal> {
 
     @Override
     public String getFullStatistics() {
-        return "min " + min + " max " + max + " sum " + sum + " avg " + avg;
+        return "Float full statistics:\n" + "\tmin: " + min + "\n\tmax: " + max + "\n\tavg: " + avg;
     }
 
     @Override
     public String getShortStatistics() {
-        return String.valueOf(getCount());
+        return "Float short statistics:\n" + "\tcount: " + getCount();
     }
 
 }
