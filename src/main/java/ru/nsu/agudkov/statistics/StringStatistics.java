@@ -1,9 +1,8 @@
 package ru.nsu.agudkov.statistics;
 
 public class StringStatistics extends BaseStatistics<String> {
-    private long maxLength = 0;
-    private long minLength = 0;
-
+    private int maxLength = -1;
+    private int minLength = Integer.MAX_VALUE;
 
     @Override
     public void processValue(String value) {

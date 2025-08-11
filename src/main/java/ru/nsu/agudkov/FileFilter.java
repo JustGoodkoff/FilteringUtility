@@ -86,7 +86,7 @@ public class FileFilter {
         } else if (isDouble(line)) {
             writeLine(line, DataType.FLOAT);
             floatStatistics.add(new BigDecimal(line));
-        } else {
+        } else if (!line.isEmpty()){
             writeLine(line, DataType.STRING);
             stringStatistics.add(line);
         }

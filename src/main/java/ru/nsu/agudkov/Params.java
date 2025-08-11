@@ -48,7 +48,7 @@ public class Params {
     public String toString() {
         return "outputPath='" + outputPath + '\'' +
                 ", filePrefix='" + filePrefix + '\'' +
-                ", rewriteFiles=" + appendFiles +
+                ", appendFile=" + appendFiles +
                 ", type=" + type +
                 ", files=" + files +
                 '}';
