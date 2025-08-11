@@ -20,11 +20,17 @@ public class FloatStatistics extends BaseStatistics<BigDecimal> {
 
     @Override
     public String getFullStatistics() {
+        if (getCount() == 0) {
+            return "Float full statistics: no data";
+        }
         return "Float full statistics:\n" + "\tmin: " + min + "\n\tmax: " + max + "\n\tavg: " + avg;
     }
 
     @Override
     public String getShortStatistics() {
+        if (getCount() == 0) {
+            return "Float short statistics: no data";
+        }
         return "Float short statistics:\n" + "\tcount: " + getCount();
     }
 
