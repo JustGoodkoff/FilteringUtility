@@ -61,7 +61,7 @@ public class FileFilter {
             System.out.println(integerStatistics.getShortStatistics());
             System.out.println(floatStatistics.getShortStatistics());
             System.out.println(stringStatistics.getShortStatistics());
-        } else {
+        } else if (params.getType() == StatisticType.FULL){
             System.out.println(integerStatistics.getFullStatistics());
             System.out.println(floatStatistics.getFullStatistics());
             System.out.println(stringStatistics.getFullStatistics());
