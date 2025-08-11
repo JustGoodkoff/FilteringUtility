@@ -31,7 +31,6 @@ public class FileFilter {
     public FileFilter(Params params) {
         this.params = params;
         outputPath = Paths.get(params.getOutputPath()).toAbsolutePath();
-        System.out.println("Output path: " + outputPath);
         integerFileName = params.getFilePrefix() + INTEGER_BASE_FILENAME;
         floatFileName = params.getFilePrefix() + FLOAT_BASE_FILENAME;
         stringFileName = params.getFilePrefix() + STRING_BASE_FILENAME;
@@ -43,7 +42,9 @@ public class FileFilter {
             try {
                 Files.deleteIfExists(filePath);
             } catch (IOException e) {
-                throw new IOException("Передан флаг перезаписи, но удалить файл не получилось");
+                throw new IOException(
+                        String.format("The overwrite option is enabled, but the file '%s' could not be deleted. Please remove it manually.", filePath)
+                );
             }
         }
     }
@@ -145,14 +146,15 @@ public class FileFilter {
     private BufferedWriter createWriter(String type) throws IOException {
         String fileName = params.getFilePrefix() + type;
         Path filePath = outputPath.resolve(fileName);
-        System.out.println(fileName + " created");
-        System.out.println(filePath + " resolved");
         boolean append = params.getAppendFiles();
         try {
             return new BufferedWriter(new FileWriter(filePath.toFile(), append));
         } catch (IOException e) {
-            throw new IOException(
-                    "Ошибка, невозможно создать файл для записи");
+            throw new IOException(String.format(
+                    "Error: Unable to create file '%s' for writing. %s",
+                    filePath,
+                    e.getMessage()
+            ));
         }
     }
 
@@ -167,7 +169,11 @@ public class FileFilter {
             try {
                 writer.close();
             } catch (IOException e) {
-                throw new IOException("Ошибка при закрытии файла");
+                throw new IOException(String.format((
+                        "Failed to close writer for file type '%s': %s%n"),
+                        type,
+                        e.getMessage()
+                ));
             }
         }
     }
