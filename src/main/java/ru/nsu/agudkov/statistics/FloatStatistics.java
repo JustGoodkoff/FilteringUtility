@@ -2,6 +2,7 @@ package ru.nsu.agudkov.statistics;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class FloatStatistics extends BaseStatistics<BigDecimal> {
 
@@ -15,7 +16,7 @@ public class FloatStatistics extends BaseStatistics<BigDecimal> {
         if (min == null || value.compareTo(min) < 0) min = value;
         if (max == null || value.compareTo(max) > 0) max = value;
         sum = sum.add(value);
-        avg = sum.divide(BigDecimal.valueOf(getCount()), MathContext.DECIMAL64);
+        avg = sum.divide(BigDecimal.valueOf(getCount()), 3, RoundingMode.CEILING);
     }
 
     @Override
@@ -23,7 +24,12 @@ public class FloatStatistics extends BaseStatistics<BigDecimal> {
         if (getCount() == 0) {
             return "Float full statistics: no data";
         }
-        return "Float full statistics:\n" + "\tmin: " + min + "\n\tmax: " + max + "\n\tavg: " + avg;
+        return "Float full statistics:"
+                + "\n\tcount: " + getCount()
+                + "\n\tmin: " + min
+                + "\n\tmax: " + max
+                + "\n\tsum: " + sum
+                + "\n\tavg: " + avg;
     }
 
     @Override
