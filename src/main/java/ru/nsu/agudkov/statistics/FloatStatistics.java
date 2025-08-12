@@ -28,7 +28,7 @@ public class FloatStatistics extends BaseStatistics<BigDecimal> {
                 + "\n\tcount: " + getCount()
                 + "\n\tmin: " + min
                 + "\n\tmax: " + max
-                + "\n\tsum: " + sum
+                + "\n\tsum: " + sum.setScale(3, RoundingMode.CEILING)
                 + "\n\tavg: " + avg;
     }
 
