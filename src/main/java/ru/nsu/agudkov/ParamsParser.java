@@ -4,11 +4,26 @@ import org.apache.commons.cli.*;
 
 
 public class ParamsParser {
+
+    public static final String HELP_TEXT = """
+Usage: java -jar FilteringUtility.jar [options] <input-files...>
+
+Options:
+    -o      Output directory for result files. If not specified, the current working directory is used.
+    -p      Prefix to add to the names of output files.
+    -a      Append to existing output files instead of overwriting them.
+    -s      Show short statistics for processed data.
+    -f      Show full statistics for processed data.
+
+Arguments:
+  <input-files...>  One or more input files to process. At least one file must be specified.
+""";
+
     public Params parse(String[] args) throws ParseException {
 
         Options options = new Options();
-        options.addOption(Option.builder("o").hasArg().argName("path").build());
-        options.addOption(Option.builder("p").hasArg().argName("prefix").build());
+        options.addOption(Option.builder("o").hasArg().build());
+        options.addOption(Option.builder("p").hasArg().build());
         options.addOption(Option.builder("a").build());
         options.addOption(Option.builder("s").build());
         options.addOption(Option.builder("f").build());

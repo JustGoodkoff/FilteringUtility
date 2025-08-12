@@ -15,6 +15,7 @@ public class Main {
             params = parser.parse(args);
         } catch (ParseException e) {
             System.err.println(e.getMessage());
+            System.err.println(ParamsParser.HELP_TEXT);
             System.exit(EXIT_PARSE_ERROR);
         }
         try {
