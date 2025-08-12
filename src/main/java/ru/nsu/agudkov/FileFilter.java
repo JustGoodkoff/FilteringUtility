@@ -61,7 +61,7 @@ public class FileFilter {
             System.out.println(integerStatistics.getShortStatistics());
             System.out.println(floatStatistics.getShortStatistics());
             System.out.println(stringStatistics.getShortStatistics());
-        } else if (params.getType() == StatisticType.FULL){
+        } else if (params.getType() == StatisticType.FULL) {
             System.out.println(integerStatistics.getFullStatistics());
             System.out.println(floatStatistics.getFullStatistics());
             System.out.println(stringStatistics.getFullStatistics());
@@ -69,7 +69,14 @@ public class FileFilter {
     }
 
     private void processFile(String fileName) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        BufferedReader reader;
+        try {
+            reader = new BufferedReader(new FileReader(fileName));
+        } catch (IOException e) {
+            System.err.printf("The file '%s' could not be opened.%n", fileName);
+            return;
+        }
+        try (reader) {
             String line;
             while ((line = reader.readLine()) != null) {
                 processLine(line);
@@ -86,7 +93,7 @@ public class FileFilter {
         } else if (isDouble(line)) {
             writeLine(line, DataType.FLOAT);
             floatStatistics.add(new BigDecimal(line));
-        } else if (!line.isEmpty()){
+        } else if (!line.isEmpty()) {
             writeLine(line, DataType.STRING);
             stringStatistics.add(line);
         }
@@ -151,7 +158,7 @@ public class FileFilter {
             return new BufferedWriter(new FileWriter(filePath.toFile(), append));
         } catch (IOException e) {
             throw new IOException(String.format(
-                    "Error: Unable to create file '%s' for writing. %s",
+                    "Error: Unable to create file '%s' for writing. The utility cannot continue. %s",
                     filePath,
                     e.getMessage()
             ));
@@ -170,7 +177,7 @@ public class FileFilter {
                 writer.close();
             } catch (IOException e) {
                 throw new IOException(String.format((
-                        "Failed to close writer for file type '%s': %s%n"),
+                                "Failed to close writer for file type '%s': %s%n"),
                         type,
                         e.getMessage()
                 ));
