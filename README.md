@@ -1,6 +1,7 @@
 ## Требования
 
 - Java 17
+- Gradle 8.13
 - Gradle плагин Shadow (версия com.gradleup.shadow 9.0.0-rc3)
 - Зависимость: commons-cli:commons-cli:1.9.0
 
